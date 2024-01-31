@@ -2,8 +2,8 @@
 pragma solidity ^0.8.13;
 
 struct CounterArgs {
-    uint256 number;
-    bool boolean;
+    uint256 thisIsANumber;
+    bool thisShouldBeABool;
 }
 
 enum ChangeType {
@@ -15,11 +15,11 @@ contract Counter {
     uint256 public number;
 
     constructor(CounterArgs memory args) {
-        number = args.number;
+        number = args.thisIsANumber;
     }
 
     function setNumber(CounterArgs memory args) public {
-        number = args.number;
+        number = args.thisIsANumber;
     }
 
     function simple(uint256 simpleIncrement) public {
@@ -40,7 +40,7 @@ contract Counter {
 
     function hereWeGo(CounterArgs[] calldata yikes) public {
         for (uint256 i = 0; i < yikes.length; i++) {
-            number += yikes[i].number;
+            number += yikes[i].thisIsANumber;
         }
     }
 }

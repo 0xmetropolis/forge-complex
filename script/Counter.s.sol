@@ -9,8 +9,12 @@ contract CounterScript is Script {
 
     function run() public {
         vm.startBroadcast();
-        Counter counter = new Counter(CounterArgs({number: 0, boolean: false}));
-        counter.setNumber(CounterArgs({number: 1, boolean: false}));
+        Counter counter = new Counter(
+            CounterArgs({thisIsANumber: 0, thisShouldBeABool: false})
+        );
+        counter.setNumber(
+            CounterArgs({thisIsANumber: 1, thisShouldBeABool: false})
+        );
 
         address[] memory wut = new address[](2);
 
@@ -18,17 +22,14 @@ contract CounterScript is Script {
 
         CounterArgs[] memory yikes = new CounterArgs[](2);
 
-        yikes[0] = CounterArgs({number: 1, boolean: false});
-        yikes[1] = CounterArgs({number: 2, boolean: false});
+        yikes[0] = CounterArgs({thisIsANumber: 1, thisShouldBeABool: false});
+        yikes[1] = CounterArgs({thisIsANumber: 2, thisShouldBeABool: false});
 
         counter.hereWeGo(yikes);
 
         counter.change(ChangeType.Decrement, 1);
 
-        new CrazyInitializer(
-            ChangeType.Increment,
-            yikes
-        );
+        new CrazyInitializer(ChangeType.Increment, yikes);
 
         vm.stopBroadcast();
     }
